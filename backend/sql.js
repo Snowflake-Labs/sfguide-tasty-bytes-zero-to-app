@@ -13,7 +13,7 @@ module.exports = {
     all_franchise_names: `
     SELECT
         object_construct('franchise_id', o.franchise_id, 'truck_brands', array_agg(distinct o.truck_brand_name)) as franchise
-    FROM ORDERS o
+    FROM FROSTBYTE_TASTY_BYTES.APP.ORDERS o
     GROUP BY o.franchise_id
     ORDER BY o.franchise_id, COUNT(o.order_id) DESC;
     `,
@@ -22,7 +22,7 @@ module.exports = {
     trucks_by_franchise: `
     SELECT
         array_agg(distinct o.truck_brand_name) as truck_brand_names
-    FROM ORDERS o
+    FROM FROSTBYTE_TASTY_BYTES.APP.ORDERS o
     WHERE o.franchise_id = :1
     ORDER BY o.truck_brand_name;
     `,
@@ -47,7 +47,7 @@ module.exports = {
         TOP 10 truck_brand_name,
         sum(price) AS revenue
     FROM
-        app.orders
+        FROSTBYTE_TASTY_BYTES.APP.app.orders
     WHERE
         date(order_ts) >= :2
         AND date(order_ts) <= :3
@@ -68,7 +68,7 @@ module.exports = {
         month(order_ts) as date,
         sum(price) AS revenue
     FROM
-        app.orders
+        FROSTBYTE_TASTY_BYTES.APP.ORDERS
     WHERE
          year(order_ts) = :2
         AND franchise_id = :1
@@ -87,7 +87,7 @@ module.exports = {
         dayofweek(order_ts) as DoW,
         sum(price) AS revenue
     FROM
-        app.orders
+        FROSTBYTE_TASTY_BYTES.APP.ORDERS
     WHERE
         date(order_ts) >= :2
         AND date(order_ts) <= :3
@@ -109,7 +109,7 @@ module.exports = {
         menu_item_name,
         sum(price) AS revenue
     FROM
-        app.orders
+        FROSTBYTE_TASTY_BYTES.APP.ORDERS
     WHERE
         date(order_ts) >= :2
         AND date(order_ts) <= :3
@@ -132,7 +132,7 @@ module.exports = {
         primary_city,
         sum(price) AS revenue
     FROM
-        app.orders
+        FROSTBYTE_TASTY_BYTES.APP.ORDERS
     WHERE
         date(order_ts) >= :2
         AND date(order_ts) <= :3
@@ -149,7 +149,7 @@ module.exports = {
     // SQL used by the login endpoint /login
     // Get user_id and hashed_password matching user name
     verify_user: `
-    SELECT USER_ID, USER_NAME, HASHED_PASSWORD, FRANCHISE_ID FROM app.USERS WHERE USER_NAME = :1;
+    SELECT USER_ID, USER_NAME, HASHED_PASSWORD, FRANCHISE_ID FROM FROSTBYTE_TASTY_BYTES.APP.USERS WHERE USER_NAME = :1;
     `,
   };
   

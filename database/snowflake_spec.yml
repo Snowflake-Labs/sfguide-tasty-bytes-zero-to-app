@@ -1,0 +1,24 @@
+spec:
+  containers:
+    - name: router
+      image: /bculberson/test/bculberson/router_service
+      env:
+        FE_SERVER: localhost:3001
+        BE_SERVER: localhost:3000
+    - name: frontend
+      image: /bculberson/test/bculberson/frontend_service
+      env:
+        REACT_APP_API_URL: /api
+    - name: backend
+      image: /bculberson/test/bculberson/backend_service
+      env:
+        ACCESS_TOKEN_SECRET: REPLACE_WITH_RANDOM
+        REFRESH_TOKEN_SECRET: REPLACE_WITH_RANDOM
+        SNOWFLAKE_WAREHOUSE: TASTY_APP_API_WH
+        AUTH: CONTAINER
+  endpoints:
+    - name: router
+      port: 8000
+      public: true
+  networkPolicyConfig:
+    allowInternetEgress: true

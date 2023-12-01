@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+    router_service:
+        build: .
+        ports:
+          - 8888:8000
+        environment:
+          - FE_SERVER=frontend_service:3001
+          - BE_SERVER=backend_service:3000
+
+    frontend_service:
+        build: ./frontend
+        ports:
+            - 3001:3001
+        environment:
+            - REACT_APP_API_URL=/api
+  
+    backend_service:
+        build: ./backend
+        ports:
+            - 3000:3000
+        volumes:
+            - ${PWD}/app_user_rsa_key.p8:/mnt/private.p8 
+        environment:
+            - ACCESS_TOKEN_SECRET=REPLACE_WITH_RANDOM
+            - REFRESH_TOKEN_SECRET=REPLACE_WITH_RANDOM
+            - SNOWFLAKE_ACCOUNT=sfsenorthamerica_demo226
+            - SNOWFLAKE_USERNAME=TASTY_APP_API_USER
+            - SNOWFLAKE_DATABASE=FROSTBYTE_TASTY_BYTES
+            - SNOWFLAKE_SCHEMA=APP
+            - SNOWFLAKE_WAREHOUSE=TASTY_APP_API_WH
+            - AUTH=JWT
+
