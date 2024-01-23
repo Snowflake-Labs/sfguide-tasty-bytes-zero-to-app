@@ -31,7 +31,7 @@ cd ../router
 
 Add a `.env` file for local testing:
 ````bash
-FRONTEND_SERVICE=localhost:3001
+FRONTEND_SERVICE=localhost:4000
 BACKEND_SERVICE=localhost:3000
 ````
 
@@ -57,22 +57,6 @@ ls
 Call docker compose to create the service:
 ````bash
 docker compose up
-
-# [+] Building 0.0s (0/0)
-# docker:desktop-linux
-# [+] Running 1/0
-#  ✔ Container backend-backend_service-1
-# Created     0.0s 
-# Attaching to backend-backend_service-1
-# backend-backend_service-1  | 
-# backend-backend_service-1  | > serve
-# backend-backend_service-1  | > node app.js
-# backend-backend_service-1  | 
-# backend-backend_service-1  | Starting up Node Express, build version 00013
-# backend-backend_service-1  | Server running on port 3000
-# backend-backend_service-1  | Environment: development
-# backend-backend_service-1  | CORS origin allowed: http://localhost:3001
-# backend-backend_service-1  | Connected to Snowflake account
 ````
 
 In a new terminal window, use `curl` to access the `/test` route:

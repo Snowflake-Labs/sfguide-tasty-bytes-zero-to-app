@@ -43,7 +43,7 @@ ACCESS_TOKEN_SECRET={INSERT SOME RANDOM STRING HERE}
 REFRESH_TOKEN_SECRET={INSERT ANOTHER RANDOM STRING HERE}
 
 PORT=3000
-CORS_ADDRESS=http://localhost:3001
+CORS_ADDRESS=http://localhost:4000
 ````
 
 ## Test the service
@@ -71,7 +71,6 @@ docker compose up
 # backend-backend_service-1  | Starting up Node Express, build version 00013
 # backend-backend_service-1  | Server running on port 3000
 # backend-backend_service-1  | Environment: development
-# backend-backend_service-1  | CORS origin allowed: http://localhost:3001
 # backend-backend_service-1  | Connected to Snowflake account
 ````
 
